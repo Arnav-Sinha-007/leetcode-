@@ -9,19 +9,19 @@
 class Solution {
 public:
     bool hasCycle(ListNode *head) {
-        unordered_set<ListNode*> lara;
-        ListNode* temp=head;
-        while(temp!=NULL){
-            if(lara.find(temp)!=lara.end()){
+        ListNode* slow=head;
+        ListNode* fast=head;
+        if(head==NULL){
+            return false;
+        }
+        while(fast!=NULL && fast->next!=NULL){
+            slow=slow->next;
+            fast=fast->next;
+            fast=fast->next;
+            if(slow==fast){
                 return true;
             }
-            else{
-                lara.insert(temp);
             }
-            temp=temp->next;
-
-        }
-        return false;
-
+            return false;
     }
 };
